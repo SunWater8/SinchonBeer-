@@ -1,0 +1,78 @@
+-- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+--
+-- Host: mysql205.c0inhtd4aeqi.ap-northeast-2.rds.amazonaws.com    Database: project
+-- ------------------------------------------------------
+-- Server version	8.0.23
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
+SET @@SESSION.SQL_LOG_BIN= 0;
+
+--
+-- GTID state at the beginning of the backup 
+--
+
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '';
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `oidx` int NOT NULL AUTO_INCREMENT,
+  `odate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ocategory` varchar(20) NOT NULL,
+  `tidx` int DEFAULT NULL,
+  `midx` int NOT NULL,
+  `oprice` int NOT NULL,
+  `tpeople` int DEFAULT NULL,
+  `aidx` int DEFAULT NULL,
+  `ostatus` varchar(45) NOT NULL DEFAULT 'pending',
+  `gidx` int DEFAULT NULL,
+  `amount` int DEFAULT NULL,
+  PRIMARY KEY (`oidx`),
+  KEY `order_ibfk_1` (`tidx`),
+  KEY `aidx_fk_idx` (`aidx`),
+  KEY `orders_ibfk_3_idx` (`gidx`),
+  KEY `orders_ibfk_2` (`midx`),
+  CONSTRAINT `aidx_fk` FOREIGN KEY (`aidx`) REFERENCES `address` (`aidx`) ON DELETE CASCADE,
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`tidx`) REFERENCES `tour` (`tidx`),
+  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`midx`) REFERENCES `member` (`midx`) ON DELETE CASCADE,
+  CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`gidx`) REFERENCES `goods` (`gidx`),
+  CONSTRAINT `order_ck` CHECK ((`ocategory` in (_utf8mb4'tour',_utf8mb4'shop')))
+) ENGINE=InnoDB AUTO_INCREMENT=459 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (74,'2021-09-04 07:46:20','tour',9,3,66000,3,NULL,'pending',NULL,NULL),(123,'2021-09-14 11:01:18','tour',27,31,22000,1,NULL,'pending',NULL,NULL),(124,'2021-09-14 11:05:03','tour',27,31,22000,1,NULL,'pending',NULL,NULL),(125,'2021-09-14 11:06:19','tour',24,31,22000,1,NULL,'pending',NULL,NULL),(186,'2021-09-19 00:56:13','shop',NULL,46,22000,NULL,17,'pending',NULL,NULL),(187,'2021-09-19 01:25:01','shop',NULL,46,44000,NULL,17,'pending',NULL,NULL),(188,'2021-09-19 01:34:20','shop',NULL,46,44000,NULL,17,'pending',NULL,NULL),(192,'2021-09-20 05:43:00','shop',NULL,63,12100,NULL,17,'pending',NULL,NULL),(205,'2021-09-23 01:58:48','shop',22,31,11000,NULL,17,'pending',NULL,NULL),(215,'2021-09-23 07:33:43','shop',NULL,52,12100,NULL,20,'pending',NULL,NULL),(216,'2021-09-23 08:01:45','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(217,'2021-09-23 08:01:56','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(218,'2021-09-23 08:02:00','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(219,'2021-09-23 08:02:22','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(220,'2021-09-23 08:02:24','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(221,'2021-09-23 08:02:26','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(222,'2021-09-23 08:06:56','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(223,'2021-09-23 08:07:40','shop',NULL,52,11000,NULL,20,'pending',NULL,NULL),(224,'2021-09-23 08:09:00','shop',NULL,52,8800,NULL,20,'pending',NULL,NULL),(225,'2021-09-23 08:14:24','shop',NULL,52,8800,NULL,20,'pending',NULL,NULL),(226,'2021-09-23 08:17:39','shop',NULL,52,5500,NULL,20,'pending',NULL,NULL),(227,'2021-09-23 08:19:24','shop',NULL,52,8800,NULL,20,'pending',NULL,NULL),(228,'2021-09-23 08:20:21','shop',NULL,52,35200,NULL,20,'pending',NULL,NULL),(230,'2021-09-23 08:38:02','shop',NULL,53,22000,NULL,21,'pending',NULL,NULL),(257,'2021-09-24 00:21:46','tour',28,52,22000,1,NULL,'pending',NULL,NULL),(259,'2021-09-24 00:38:03','tour',23,52,22000,1,NULL,'pending',NULL,NULL),(260,'2021-09-24 00:38:33','tour',23,52,22000,1,NULL,'pending',NULL,NULL),(262,'2021-09-24 00:44:06','tour',23,52,22000,1,NULL,'pending',NULL,NULL),(264,'2021-09-24 00:49:15','tour',23,52,22000,1,NULL,'pending',NULL,NULL),(265,'2021-09-24 00:52:43','tour',23,52,22000,1,NULL,'pending',NULL,NULL),(268,'2021-09-24 02:53:34','shop',NULL,44,11000,NULL,15,'pending',NULL,NULL),(269,'2021-09-24 09:08:10','tour',28,55,88000,4,NULL,'pending',NULL,NULL),(270,'2021-09-25 02:55:05','tour',27,44,66000,3,NULL,'pending',NULL,NULL),(271,'2021-09-25 02:56:11','tour',27,44,66000,3,NULL,'pending',NULL,NULL),(272,'2021-09-25 02:57:27','tour',27,44,66000,3,NULL,'pending',NULL,NULL),(273,'2021-09-25 02:59:14','tour',26,44,88000,4,NULL,'pending',NULL,NULL),(294,'2021-09-27 07:55:57','tour',36,58,44000,2,NULL,'pending',NULL,NULL),(303,'2021-09-27 08:48:05','tour',27,63,66000,3,NULL,'confirmed',NULL,NULL),(308,'2021-09-27 09:49:11','shop',NULL,44,33000,NULL,15,'pending',NULL,NULL),(309,'2021-09-27 09:49:15','tour',35,58,44000,2,NULL,'pending',NULL,NULL),(310,'2021-09-27 09:52:28','tour',28,58,66000,3,NULL,'pending',NULL,NULL),(311,'2021-09-27 09:52:51','tour',28,58,66000,3,NULL,'pending',NULL,NULL),(312,'2021-09-27 09:53:02','tour',28,58,66000,3,NULL,'pending',NULL,NULL),(313,'2021-09-27 09:55:15','tour',28,58,66000,3,NULL,'confirmed',NULL,NULL),(314,'2021-09-27 09:56:00','shop',NULL,58,24200,NULL,25,'confirmed',NULL,NULL),(315,'2021-09-27 09:58:36','shop',NULL,58,24200,NULL,25,'confirmed',NULL,NULL),(328,'2021-09-27 11:01:30','tour',27,44,44000,2,NULL,'pending',NULL,NULL),(329,'2021-09-27 11:07:56','tour',27,44,44000,2,NULL,'pending',NULL,NULL),(335,'2021-09-27 11:33:19','tour',27,65,22000,1,NULL,'pending',NULL,NULL),(337,'2021-09-27 11:36:28','shop',NULL,44,33000,NULL,15,'pending',2,3),(339,'2021-09-27 11:37:15','tour',28,44,66000,3,NULL,'pending',NULL,NULL),(340,'2021-09-27 11:45:58','tour',53,44,88000,4,NULL,'cancled',NULL,NULL),(341,'2021-09-27 11:46:58','tour',28,67,44000,2,NULL,'pending',NULL,NULL),(342,'2021-09-27 11:47:26','tour',28,67,44000,2,NULL,'confirmed',NULL,NULL),(343,'2021-09-27 11:48:00','shop',NULL,44,33000,NULL,15,'pending',2,3),(344,'2021-09-27 11:48:31','shop',NULL,44,33000,NULL,15,'confirmed',2,3),(352,'2021-09-27 13:58:22','shop',NULL,69,48400,NULL,33,'confirmed',1,4),(353,'2021-09-27 13:59:53','tour',28,69,22000,1,NULL,'confirmed',NULL,NULL),(359,'2021-09-27 14:14:07','shop',NULL,58,22000,NULL,25,'confirmed',2,2),(360,'2021-09-27 14:17:12','tour',28,65,44000,2,NULL,'confirmed',NULL,NULL),(361,'2021-09-27 14:20:31','shop',NULL,58,11000,NULL,25,'pending',4,2),(362,'2021-09-27 14:21:17','shop',NULL,58,11000,NULL,25,'confirmed',4,2),(363,'2021-09-27 14:22:46','shop',NULL,58,5500,NULL,25,'confirmed',4,1),(365,'2021-09-27 14:30:25','tour',26,70,66000,3,NULL,'cancled',NULL,NULL),(369,'2021-09-27 14:48:33','shop',NULL,69,12100,NULL,33,'pending',1,1),(370,'2021-09-27 14:49:02','shop',NULL,69,11000,NULL,33,'confirmed',2,1),(371,'2021-09-27 14:50:51','shop',NULL,73,5500,NULL,37,'confirmed',4,1),(372,'2021-09-27 14:57:08','shop',NULL,58,11000,NULL,25,'pending',2,1),(373,'2021-09-27 14:57:33','shop',NULL,58,11000,NULL,25,'confirmed',2,1),(375,'2021-09-27 15:05:23','shop',NULL,74,48400,NULL,38,'confirmed',1,4),(376,'2021-09-27 15:07:22','shop',NULL,74,36300,NULL,38,'pending',1,3),(377,'2021-09-27 15:08:05','shop',NULL,74,36300,NULL,38,'pending',1,3),(378,'2021-09-27 15:08:20','shop',NULL,74,36300,NULL,38,'pending',1,3),(379,'2021-09-27 15:08:59','shop',NULL,74,12100,NULL,38,'pending',1,1),(380,'2021-09-27 15:09:51','shop',NULL,74,12100,NULL,38,'pending',1,1),(381,'2021-09-27 15:13:05','tour',41,74,66000,3,NULL,'pending',NULL,NULL),(382,'2021-09-27 15:13:31','tour',41,74,66000,3,NULL,'confirmed',NULL,NULL),(383,'2021-09-27 15:14:01','shop',NULL,74,12100,NULL,38,'confirmed',1,1),(384,'2021-09-27 15:40:08','tour',31,70,66000,3,NULL,'cancled',NULL,NULL),(386,'2021-09-28 00:45:10','shop',NULL,65,33000,NULL,30,'confirmed',2,3),(388,'2021-09-28 00:49:16','shop',NULL,70,8800,NULL,34,'confirmed',3,1),(392,'2021-09-28 01:07:07','shop',NULL,44,12100,NULL,15,'confirmed',1,1),(394,'2021-09-28 01:18:39','shop',NULL,44,33000,NULL,15,'confirmed',2,3),(395,'2021-09-28 01:19:35','shop',NULL,70,5500,NULL,34,'pending',4,1),(396,'2021-09-28 01:19:37','shop',NULL,44,26400,NULL,15,'pending',3,3),(397,'2021-09-28 01:19:38','shop',NULL,65,8800,NULL,30,'confirmed',3,1),(398,'2021-09-28 01:20:05','shop',NULL,70,5500,NULL,34,'confirmed',4,1),(399,'2021-09-28 01:20:51','shop',NULL,44,26400,NULL,15,'confirmed',3,3),(400,'2021-09-28 01:21:38','shop',NULL,44,5500,NULL,15,'confirmed',4,1),(402,'2021-09-28 01:37:44','shop',NULL,70,12100,NULL,34,'pending',1,1),(403,'2021-09-28 01:38:05','shop',NULL,70,12100,NULL,34,'confirmed',1,1),(409,'2021-09-28 01:44:23','shop',NULL,44,22000,NULL,15,'confirmed',2,2),(410,'2021-09-28 01:45:14','shop',NULL,44,33000,NULL,15,'pending',2,3),(412,'2021-09-28 02:53:26','shop',NULL,58,11000,NULL,25,'pending',2,1),(413,'2021-09-28 02:54:32','shop',NULL,58,11000,NULL,25,'confirmed',2,1),(415,'2021-09-28 03:03:56','shop',NULL,65,8800,NULL,30,'pending',3,1),(416,'2021-09-28 03:04:07','shop',NULL,70,12100,NULL,34,'confirmed',1,1),(417,'2021-09-28 03:04:32','shop',NULL,65,8800,NULL,30,'confirmed',3,1),(418,'2021-09-28 03:04:56','tour',36,70,44000,2,NULL,'confirmed',NULL,NULL),(419,'2021-09-28 03:05:18','shop',NULL,65,17600,NULL,30,'confirmed',3,2),(420,'2021-09-28 03:07:02','tour',50,65,66000,3,NULL,'confirmed',NULL,NULL),(421,'2021-09-28 03:08:29','shop',NULL,85,36300,NULL,49,'pending',1,3),(422,'2021-09-28 03:08:57','shop',NULL,85,36300,NULL,49,'confirmed',1,3),(423,'2021-09-28 03:12:15','tour',42,44,44000,2,NULL,'confirmed',NULL,NULL),(424,'2021-09-28 03:14:36','shop',NULL,58,5500,NULL,25,'confirmed',4,1),(425,'2021-09-28 03:18:20','tour',27,70,66000,3,NULL,'pending',NULL,NULL),(426,'2021-09-28 03:18:30','tour',56,44,44000,2,NULL,'confirmed',NULL,NULL),(427,'2021-09-28 03:18:45','tour',27,70,66000,3,NULL,'pending',NULL,NULL),(428,'2021-09-28 03:19:35','tour',28,44,44000,2,NULL,'pending',NULL,NULL),(429,'2021-09-28 03:20:28','tour',28,44,22000,1,NULL,'confirmed',NULL,NULL),(432,'2021-09-28 03:40:14','shop',NULL,93,11000,NULL,54,'confirmed',2,1),(433,'2021-09-28 03:40:31','shop',NULL,87,12100,NULL,55,'pending',1,1),(434,'2021-09-28 03:42:32','shop',NULL,87,12100,NULL,55,'confirmed',1,1),(435,'2021-09-28 03:44:45','shop',NULL,94,12100,NULL,57,'confirmed',1,1),(436,'2021-09-28 03:45:52','shop',NULL,94,8800,NULL,57,'pending',3,1),(437,'2021-09-28 03:46:07','shop',NULL,94,8800,NULL,57,'pending',3,1),(438,'2021-09-28 03:46:19','shop',NULL,94,8800,NULL,57,'confirmed',3,1),(449,'2021-09-28 05:36:20','shop',NULL,57,11000,NULL,24,'confirmed',4,2),(457,'2021-09-28 17:04:40','shop',NULL,88,60500,NULL,51,'confirmed',1,5);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-09-30 19:22:08
