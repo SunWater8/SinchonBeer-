@@ -12,20 +12,19 @@ public class EmailFindService {
 
 	@Autowired
 	private SqlSessionTemplate template;
-	
+
 	public String emailSearch(String name, String phone) {
 		String resultEmail = null;
 		try {
-		Member member = template.getMapper(MemberDao.class).emailSearch(name, phone);
-		System.out.println("member 객체 : "+member);
-		
-		resultEmail = member.getEmail();
-		}catch(NullPointerException e) {
-			e.printStackTrace();
-			System.out.println("찾으려는 이메일이 없을 경우 발생하는 예외");
+			Member member = template.getMapper(MemberDao.class).emailSearch(name, phone);
+			System.out.println("member 객체 : " + member);
+
+			resultEmail = member.getEmail();
+		} catch (NullPointerException e) {
+			// e.printStackTrace();
+			System.out.println("[EmailFindService] NullPointerException - 찾으려는 회원 계정이 없을 경우");
 		}
 		return resultEmail;
 	}
-	
-	
+
 }
