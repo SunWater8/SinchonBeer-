@@ -1,10 +1,10 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sinchon?servertimezone=UTC
- #   url: jdbc:mysql://mysql205.c0inhtd4aeqi.ap-northeast-2.rds.amazonaws.com/project?serverTimezone=UTC
-    username: sinchonbeer
-    password: sinchonbeer
+#    url: jdbc:mysql://localhost:3306/sinchon?servertimezone=UTC
+    url: jdbc:mysql://mysql312.cba8oijuqyxu.ap-northeast-2.rds.amazonaws.com:3306/sinchon?serverTimezone=UTC
+    username: bi
+    password: bi
     
     hikari:
       connection-timeout: 20000
